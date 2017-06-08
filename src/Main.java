@@ -30,7 +30,7 @@ public class Main {
             System.out.println(line);
         }
 
-        System.out.println("Do you want to take updates ? (Y/N");
+        System.out.println("Do you want to take updates ? (Y/N)");
         String userChoice = reader.readLine();
 
         switch (userChoice){
