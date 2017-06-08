@@ -15,20 +15,14 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        Process p;
-//
+
         System.out.println("Enter your root password: ");
         String rootPass = reader.readLine();
 
-//        String[] cmd = {"/bin/bash","-c","echo password| sudo -S ls"};
         String[] cmd = {"/bin/bash","-c","echo " + rootPass + " | sudo -S " + LINUX_COMMAND_UPDATE};
-        Process pb = Runtime.getRuntime().exec(cmd);
+        Process p = Runtime.getRuntime().exec(cmd);
 
-        String line;
-        BufferedReader input = new BufferedReader(new InputStreamReader(pb.getInputStream()));
-        while ((line = input.readLine()) != null) {
-            System.out.println(line);
-        }
+        BufferedReader input = getBufferedReader(p);
 
         System.out.println("Do you want to take updates ? (Y/N)");
         String userChoice = reader.readLine();
@@ -46,16 +40,21 @@ public class Main {
 
     }
 
+    private static BufferedReader getBufferedReader(Process p) throws IOException {
+        String line;
+        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        while ((line = input.readLine()) != null) {
+            System.out.println(line);
+        }
+        return input;
+    }
+
     private static void takeUpdates(String rootPass, BufferedReader reader) throws IOException, InterruptedException {
         String[] cmd = {"/bin/bash","-c","echo " + rootPass + " | sudo -S " + LINUX_COMMAND_UPGRADE};
         Process pb = Runtime.getRuntime().exec(cmd);
 
 
-        String line;
-        BufferedReader input = new BufferedReader(new InputStreamReader(pb.getInputStream()));
-        while ((line = input.readLine()) != null) {
-            System.out.println(line);
-        }
+        BufferedReader input = getBufferedReader(pb);
 
 
 
