@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LinuxAutoUpdater:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LinuxAutoUpdater_jar</output-path>
+    <root id="archive" name="LinuxAutoUpdater.jar">
+      <element id="module-output" name="LinuxAutoUpdater" />
+    </root>
+  </artifact>
+</component>

@@ -16,8 +16,9 @@ public class Main {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Enter your root password: ");
-        String rootPass = reader.readLine();
+
+//        String rootPass = reader.readLine();
+        String rootPass = PasswordField.readPassword("Enter password: ");
 
         String[] cmd = {"/bin/bash","-c","echo " + rootPass + " | sudo -S " + LINUX_COMMAND_UPDATE};
         Process p = Runtime.getRuntime().exec(cmd);
@@ -39,6 +40,18 @@ public class Main {
 
 
     }
+
+//    private static String hideRootPassword() throws IOException {
+//
+//        String password = "";
+//        Console console = System.console();
+//
+//        System.out.println("Please Enter Password");
+//        char[] passString = console.readPassword();
+//        String pass = new String(password);
+//
+//        return password;
+//    }
 
     private static BufferedReader getBufferedReader(Process p) throws IOException {
         String line;
